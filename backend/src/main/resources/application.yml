@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: defence-procurement-api
+  datasource:
+    url: ${ORACLE_JDBC_URL:jdbc:oracle:thin:@//localhost:1521/XEPDB1}
+    username: ${ORACLE_DB_USERNAME}
+    password: ${ORACLE_DB_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        same-site: lax
+        path: /
+  error:
+    include-message: never
+app:
+  cors:
+    allowed-origin: ${APP_CORS_ALLOWED_ORIGIN:http://localhost:4200}
+logging:
+  level:
+    org.springframework.security: INFO
