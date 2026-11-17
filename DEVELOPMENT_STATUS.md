@@ -69,6 +69,7 @@ Commit `0302aa5` contains 70 added files: backend Maven/config/source/tests; Ang
 - `develop` — created from `main` and pushed to `origin`.
 - `feature/sprint-0-foundation-login` - current branch, created from `develop`, committed and pushed.
 - Implementation commit `0302aa5 feat(auth): implement Sprint 0 foundation and login` is present on the feature branch and `origin/feature/sprint-0-foundation-login`.
+- Follow-up commits: `3e64312 docs: record Sprint 0 verification status`; `27df140 refactor(auth): configure the DAO provider explicitly`.
 - No pull request or sprint tag has been created; feature remains unmerged, and Sprint 0 acceptance is pending Oracle checks and user review.
 
 ## Next objective

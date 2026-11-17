@@ -10,7 +10,7 @@ Command from the project root:
 mvn.cmd -f backend/pom.xml test -q
 ```
 
-Result: **passed, 10 tests, 0 failures, 0 errors, 0 skipped.** The tests cover request validation, generic bad-credential responses, BCrypt matching, CSRF enforcement, session persistence/profile access/logout, and API security flow. The HTTP integration test uses a mocked `AppUserRepository`; it does not validate Oracle connectivity or the Oracle/JPA schema mapping.
+Result: **passed, 10 tests, 0 failures, 0 errors, 0 skipped.** The tests cover request validation, generic bad-credential responses, BCrypt matching, CSRF token flow, session persistence/profile access/logout, and API security flow. The HTTP integration test uses a mocked `AppUserRepository`; it does not validate Oracle connectivity or the Oracle/JPA schema mapping.
 
 ## Frontend
 
