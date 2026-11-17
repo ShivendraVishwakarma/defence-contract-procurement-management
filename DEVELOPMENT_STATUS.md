@@ -11,6 +11,7 @@ Sprint 0 - repository foundation, database design, wireframes, project skeleton 
 - [x] Inspected the existing repository and preserved its initial commit.
 - [x] Created `develop` from `main` and pushed it to `origin`.
 - [x] Created descriptive feature branch `feature/sprint-0-foundation-login` from `develop`.
+- [x] Committed the implementation on the feature branch and pushed it to `origin`.
 - [x] Generated the Angular 14.2.13 workspace without overwriting existing files.
 - [x] Added the Spring Boot API skeleton and session-based, BCrypt-backed login implementation.
 - [x] Added Oracle 21c XE schema and fictional seed scripts for the four project domains.
@@ -23,7 +24,8 @@ Sprint 0 - repository foundation, database design, wireframes, project skeleton 
 - [x] Complete backend and frontend build/test runs and address failures.
 - [ ] Validate Oracle scripts and schema using an application schema owner; only SYSDBA read-only connectivity has been confirmed so far.
 - [ ] Configure a local application schema account and non-placeholder user passwords before end-to-end login verification.
-- [ ] Review the exact changes and Git status with the user; commit/push feature work only after implementation and checks are complete.
+- [ ] Review the feature branch and the partial login-module verification with the user.
+- [ ] After Oracle-backed validation and user review, open a pull request from the feature branch into `develop`; do not merge without review.
 - [ ] Complete Sprint 0 review and seek approval before any Sprint 1 work.
 
 ## Modules and user stories
@@ -34,7 +36,7 @@ Sprint 0 - repository foundation, database design, wireframes, project skeleton 
 
 ## Files created or modified
 
-The current working tree contains changes under `backend/`, `frontend/`, `database/`, and `docs/`, plus `README.md` and this file. Git status lists the exact paths.
+Commit `0302aa5` contains 70 added files: backend Maven/config/source/tests; Angular workspace, login, dashboard, navigation and unit tests; Oracle schema, fictional seed data and ER diagram; API, requirements, wireframe, database and test documentation; root README and this status file. Use `git show --name-status 0302aa5` for the exact path list.
 
 ## Tests executed
 
@@ -42,7 +44,7 @@ The current working tree contains changes under `backend/`, `frontend/`, `databa
 - `npm.cmd run build` in `frontend/`: passed using Angular CLI 14.2.13 / Node 16.20.2.
 - `npm.cmd test -- --watch=false --browsers=ChromeHeadless` in `frontend/`, with `CHROME_BIN` set to installed Microsoft Edge: passed; 4 tests.
 - `git diff --check`: passed.
-- SQL checks: Oracle listener and XEPDB1 were previously confirmed with read-only SYSDBA queries; project schema and seed scripts have not been executed.
+- SQL checks: read-only service/listener/XEPDB1 verification passed; project schema and seed scripts have not been executed.
 
 ## Actual test results
 
@@ -65,8 +67,9 @@ The current working tree contains changes under `backend/`, `frontend/`, `databa
 
 - `main` - initial commit `c96730c chore: initialize project repository`, preserved.
 - `develop` — created from `main` and pushed to `origin`.
-- `feature/sprint-0-foundation-login` — current implementation branch, created from `develop`.
-- Implementation commit/push and sprint tag status will be recorded after final review.
+- `feature/sprint-0-foundation-login` - current branch, created from `develop`, committed and pushed.
+- Implementation commit `0302aa5 feat(auth): implement Sprint 0 foundation and login` is present on the feature branch and `origin/feature/sprint-0-foundation-login`.
+- No pull request or sprint tag has been created; feature remains unmerged, and Sprint 0 acceptance is pending Oracle checks and user review.
 
 ## Next objective
 
