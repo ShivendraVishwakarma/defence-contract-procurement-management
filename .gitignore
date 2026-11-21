@@ -29,3 +29,25 @@ desktop.ini
 
 # Logs
 *.log
+logs/
+
+# Build, test and coverage outputs
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+
+# Local backups and temporary files
+*.bak
+*.backup
+*.tmp
+*.temp
+*~
+
+# Certificates and private credentials
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+*.keystore
