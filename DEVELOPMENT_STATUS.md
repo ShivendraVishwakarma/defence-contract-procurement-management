@@ -3,7 +3,7 @@
 Last updated: 2026-11-21
 
 ## Current sprint
-Sprints 0-4 are implemented and automated-tested. Sprints 0-2 are live-verified against Oracle; Vendor Evaluation and Invoice/Payment live verification remains to be performed with approved fictional data.
+Sprints 0-4 are implemented, automated-tested and live-verified against Oracle using fictional data.
 
 ## Completed tasks
 
@@ -25,7 +25,7 @@ Sprints 0-4 are implemented and automated-tested. Sprints 0-2 are live-verified 
 - [ ] Reconcile official story IDs and role permissions when the workbook or explicit requirements are supplied.
 - [x] Implement authenticated Vendor Evaluation and Selection flows.
 - [x] Implement authenticated Invoice and Payment Processing flows.
-- [ ] Live-verify Vendor Evaluation and Invoice/Payment flows against Oracle with approved fictional data.
+- [x] Live-verify Vendor Evaluation and Invoice/Payment flows against Oracle with approved fictional data.
 ## Files created or modified
 
 Commit `0302aa5` contains 70 added files: backend Maven/config/source/tests; Angular workspace, login, dashboard, navigation and unit tests; Oracle schema, fictional seed data and ER diagram; API, requirements, wireframe, database and test documentation; root README and this status file. Use `git show --name-status 0302aa5` for the exact path list.
