@@ -39,3 +39,5 @@ Requires an authenticated session and CSRF token. Invalidates the session and re
 ## Account provisioning
 
 `database/seed_data.sql` inserts the two role names from the brief and active sample account records with random, irrecoverable BCrypt placeholder hashes. They cannot be used for login until passwords are reset. Do not create shared or committed passwords. Exact role permissions remain pending the companion workbook.
+
+The application connects to the existing `J14_APP` schema in `XEPDB1` through JDBC Thin at `jdbc:oracle:thin:@//127.0.0.1:1521/XEPDB1`. Supply the database password locally through `ORACLE_DB_PASSWORD`; it is not stored in project files. JDBC connectivity, Hibernate schema validation and the live CSRF-protected login flow have been verified locally.

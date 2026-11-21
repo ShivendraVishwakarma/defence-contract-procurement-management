@@ -1,10 +1,9 @@
 # Development Status
 
-Last updated: 2026-11-18
+Last updated: 2026-11-21
 
 ## Current sprint
-
-Sprint 0 - repository foundation, database design, wireframes, project skeleton and login.
+Sprints 0-4 are implemented and automated-tested. Sprints 0-2 are live-verified against Oracle; Vendor Evaluation and Invoice/Payment live verification remains to be performed with approved fictional data.
 
 ## Completed tasks
 
@@ -19,59 +18,55 @@ Sprint 0 - repository foundation, database design, wireframes, project skeleton 
 
 ## Pending tasks
 
-- [x] Finish the Angular login/dashboard and initial navigation screens; module routes remain informational placeholders.
-- [x] Generate valid BCrypt placeholder hashes from discarded random values for the seeded accounts.
-- [x] Complete backend and frontend build/test runs and address failures.
-- [ ] Validate Oracle scripts and schema using an application schema owner; only SYSDBA read-only connectivity has been confirmed so far.
-- [ ] Configure a local application schema account and non-placeholder user passwords before end-to-end login verification.
-- [ ] Review the feature branch and the partial login-module verification with the user.
-- [ ] After Oracle-backed validation and user review, open a pull request from the feature branch into `develop`; do not merge without review.
-- [ ] Complete Sprint 0 review and seek approval before any Sprint 1 work.
-
-## Modules and user stories
-
-- Completed modules: none fully verified against the Oracle application schema.
-- Completed official user stories: none recorded. The companion workbook is not available, so no IDs or allocations are assumed.
-- Login module implementation: complete. API/security flow tests pass with the user repository mocked; Oracle-backed runtime verification is pending an application schema account and SQL execution.
-
+- [x] Implement authenticated contract list, detail, create, edit and status change API and Angular views against the existing schema.
+- [x] Add DTO validation, service/repository/controller layers, protected writes with CSRF, and backend/frontend tests.
+- [x] Run backend tests, Angular production build, browser tests and diff whitespace validation.
+- [x] Verify the authenticated contract list, detail, create, update and status endpoints against Oracle using fictional data.
+- [ ] Reconcile official story IDs and role permissions when the workbook or explicit requirements are supplied.
+- [x] Implement authenticated Vendor Evaluation and Selection flows.
+- [x] Implement authenticated Invoice and Payment Processing flows.
+- [ ] Live-verify Vendor Evaluation and Invoice/Payment flows against Oracle with approved fictional data.
 ## Files created or modified
 
 Commit `0302aa5` contains 70 added files: backend Maven/config/source/tests; Angular workspace, login, dashboard, navigation and unit tests; Oracle schema, fictional seed data and ER diagram; API, requirements, wireframe, database and test documentation; root README and this status file. Use `git show --name-status 0302aa5` for the exact path list.
 
+The current uncommitted Sprint 0-2 implementation includes authentication, Contracts and Requisitions backend/frontend slices, their tests, API documentation and verification scripts. `database/schema.sql` and `database/seed_data.sql` are unchanged.
+The current worktree also contains the Sprint 3 Vendor Evaluation and Sprint 4 Invoice/Payment backend/frontend slices and API documentation. The schema and seed scripts remain unchanged.
+
 ## Tests executed
 
-- `mvn.cmd -f backend/pom.xml test -q`: passed; 10 tests, 0 failures/errors.
-- `npm.cmd run build` in `frontend/`: passed using Angular CLI 14.2.13 / Node 16.20.2.
-- `npm.cmd test -- --watch=false --browsers=ChromeHeadless` in `frontend/`, with `CHROME_BIN` set to installed Microsoft Edge: passed; 4 tests.
+- `mvn.cmd -f backend/pom.xml test`: passed; 40 tests, 0 failures/errors.
+- `npm.cmd run build` from `frontend/`: passed.
+- `$env:CHROME_BIN = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'; npm.cmd test -- --watch=false --browsers=ChromeHeadless` from `frontend/`: passed; 23 browser tests.
 - `git diff --check`: passed.
-- SQL checks: read-only service/listener/XEPDB1 verification passed; project schema and seed scripts have not been executed.
-
-## Actual test results
-
-- Maven: `AuthControllerTest` 4/4, `AuthenticationApiFlowTest` 2/2, `AuthenticationServiceTest` 2/2, `AuthenticationHttpIntegrationTest` 2/2.
-- The HTTP integration test exercises CSRF token flow, BCrypt login through the Spring Security filter chain, session profile access, logout and invalid-password handling. It uses a mocked user repository, so it does not prove Oracle connectivity or the Oracle schema mapping.
-- Angular: 4/4 browser tests passed on Edge 157. Production bundle generated with an initial bundle of about 304 kB raw.
-- Oracle read-only check: `OracleServiceXE` Running; listener reported `XE` and `xepdb1` READY; local SYSDBA queries returned instance `OPEN/ACTIVE` and `XEPDB1 READ WRITE` (SQL*Plus exit code 0).
-- First Angular build exposed incompatible latest `@types/node` declarations; pinned `@types/node` to 16.18.126 to keep Node 16/Angular 14 compatibility. First invalid-login test had malformed tab JSON; corrected and reran successfully.
-- Initial Karma run could not find Chrome; rerun using installed Edge via `CHROME_BIN` passed.
-
+- Read-only local SYSDBA checks confirmed XEPDB1 is READ WRITE, the three J14_APP tables exist with contracts/vendors/status row counts of 3/5/5, contract constraints are enabled, and all 3 original contracts join to existing vendors and statuses.
+- The backend returned health HTTP 200 and PUT/PATCH CORS preflight HTTP 200; the Angular proxy returned health HTTP 200 and unauthenticated GET `/api/contracts` returned 401.
+- Authenticated live verification reported successful Contracts and Requisitions list, options, create, detail, update, item update, status update and final detail requests.
+- A read-only SYSDBA query confirmed the fictional API-created contract row (ID 21) persisted with the updated title, status ACTIVE, value 1.23, and an existing vendor link. The test row is retained because the approved API has no delete operation.
+- No password was requested, printed, stored in the repository or committed. No schema or seed scripts were run.
 ## Known issues
 
-- No dedicated Oracle application schema credentials have been configured. The backend intentionally requires explicit environment variables and will not connect as SYS.
-- Oracle schema and seed SQL have not been run. Creating an application schema owner and granting its required privileges is an administrator-level operation and requires approval.
-- Seeded user password hashes are placeholders, requiring a password reset before a live login.
-- Role permissions and official user-story allocation need the companion workbook.
-- Browser-level UI checks are not yet performed.
-
+- Official story IDs and any role permission mapping remain pending the workbook or explicit user-provided requirements.
+- No Oracle schema or seed changes were made.
 ## Git branches and commits
 
 - `main` - initial commit `c96730c chore: initialize project repository`, preserved.
-- `develop` — created from `main` and pushed to `origin`.
+- `develop` - created from `main` and pushed to `origin`.
 - `feature/sprint-0-foundation-login` - current branch, created from `develop`, committed and pushed.
 - Implementation commit `0302aa5 feat(auth): implement Sprint 0 foundation and login` is present on the feature branch and `origin/feature/sprint-0-foundation-login`.
 - Follow-up commits: `3e64312 docs: record Sprint 0 verification status`; `27df140 refactor(auth): configure the DAO provider explicitly`.
-- No pull request or sprint tag has been created; feature remains unmerged, and Sprint 0 acceptance is pending Oracle checks and user review.
+- No pull request or sprint tag has been created; the feature remains unmerged pending final review and user approval.
 
-## Next objective
+## Sprint 2: Procurement Planning and Requisition Management
 
-Complete the Oracle schema/application-account validation needed for Sprint 0, then present the login module and Sprint 0 deliverables for user verification. Do not start Sprint 1 without explicit approval.
+- [x] Implement authenticated requisition list and detail APIs and Angular views.
+- [x] Implement create/edit requisition forms, updates using existing status rows, and add/edit requisition items.
+- [x] Validate required fields, date formats, quantities, prices, line numbers and existing status references.
+- [x] Derive requester identity from the authenticated session and protect writes with the existing CSRF behavior.
+- [x] Preserve the existing schema and seed scripts; no deletion, vendor selection, invoices/payments, export, advanced filtering, approval flow or role rules were added.
+- [x] Maven tests (40 passed) and Angular production build passed.
+- [x] Complete Edge browser tests (23 passed), Angular production build and `git diff --check`.
+- [x] Finish live Oracle endpoint verification. Oracle XE/listener are running and XEPDB1 is `READ WRITE`; requisition ID 21 (`J14-REQ-VERIFY-20261121115106504`) and item ID 21 persist. The no-create resume script verified item update, status update and final detail successfully. No credentials or schema/seed changes were made.
+- Official story IDs, role permissions and approval workflow remain pending the official workbook or explicit user-provided requirements.
+
+See `docs/API-documentation/requisitions.md` and `docs/test-reports/sprint-2-test-report.md` for endpoint details and validation status.

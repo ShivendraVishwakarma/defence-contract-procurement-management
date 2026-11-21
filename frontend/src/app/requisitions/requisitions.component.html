@@ -1,0 +1,5 @@
+<main class="page"><a routerLink="/dashboard">Back to overview</a><header><p class="eyebrow">PROJECT J14 · PROCUREMENT</p><h1>Procurement requisitions</h1><p>Plan and maintain procurement requests.</p><a class="primary" routerLink="/procurement/new">Create requisition</a></header>
+<section class="card"><div class="card-head"><h2>Requisitions</h2><button type="button" (click)="load()" [disabled]="loading">Refresh</button></div>
+<p role="status" *ngIf="loading">Loading requisitions…</p><div role="alert" *ngIf="!loading && error"><p>{{error}}</p><button type="button" (click)="load()">Try again</button></div>
+<p *ngIf="!loading && !error && requisitions.length===0">No requisitions are available.</p>
+<div class="scroll" *ngIf="!loading && !error && requisitions.length"><table><thead><tr><th>Number</th><th>Title</th><th>Requested by</th><th>Status</th><th>Needed by</th></tr></thead><tbody><tr *ngFor="let row of requisitions"><td><a [routerLink]="['/procurement',row.id]">{{row.requisitionNumber}}</a></td><td>{{row.title}}</td><td>{{row.requesterName}}</td><td>{{row.statusName}}</td><td>{{row.neededByDate}}</td></tr></tbody></table></div></section></main>

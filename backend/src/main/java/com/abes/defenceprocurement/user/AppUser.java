@@ -38,7 +38,7 @@ public class AppUser {
     @Column(name = "PASSWORD_HASH", nullable = false, length = 100)
     private String passwordHash;
 
-    @Column(name = "ACTIVE_FLAG", nullable = false, length = 1)
+    @Column(name = "ACTIVE_FLAG", nullable = false, columnDefinition = "CHAR(1 CHAR)")
     private String activeFlag;
 
     @Column(name = "CREATED_AT", nullable = false)

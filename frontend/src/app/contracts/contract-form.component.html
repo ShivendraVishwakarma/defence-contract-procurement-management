@@ -1,0 +1,66 @@
+﻿<main class="form-page">
+  <a routerLink="/contracts" class="back-link">Back to contracts</a>
+  <p class="eyebrow">PROJECT J14 Â· CONTRACTS</p>
+  <h1>{{ editing ? 'Edit contract' : 'Create contract' }}</h1>
+
+  <p class="state-message" role="status" *ngIf="loading">Loading contract formâ€¦</p>
+  <div class="error-state" role="alert" *ngIf="!loading && loadError">
+    <p>{{ loadError }}</p>
+    <button type="button" class="secondary-button" (click)="load()">Try again</button>
+  </div>
+
+  <section class="success-state" role="status" *ngIf="successMessage">
+    <p>{{ successMessage }}</p>
+    <a class="primary-link" [routerLink]="['/contracts', savedContract?.id]">View contract</a>
+    <a class="secondary-link" routerLink="/contracts">Back to contracts</a>
+  </section>
+
+  <form class="contract-form" *ngIf="!loading && !loadError && !successMessage" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="field-grid">
+      <label>Contract number
+        <input type="text" formControlName="contractNumber" maxlength="40" autocomplete="off" />
+        <small class="field-error" *ngIf="form.get('contractNumber')?.touched && form.get('contractNumber')?.invalid">Enter a contract number (40 characters or fewer).</small>
+      </label>
+      <label>Title
+        <input type="text" formControlName="title" maxlength="180" />
+        <small class="field-error" *ngIf="form.get('title')?.touched && form.get('title')?.invalid">Enter a title (180 characters or fewer).</small>
+      </label>
+      <label>Vendor
+        <select formControlName="vendorId">
+          <option value="">Choose a vendor</option>
+          <option *ngFor="let vendor of options.vendors" [value]="vendor.id">{{ vendor.name }} ({{ vendor.code }})</option>
+        </select>
+        <small class="field-error" *ngIf="form.get('vendorId')?.touched && form.get('vendorId')?.invalid">Choose an existing vendor.</small>
+      </label>
+      <label *ngIf="!editing">Initial status
+        <select formControlName="statusCode">
+          <option value="">Choose a status</option>
+          <option *ngFor="let status of options.statuses" [value]="status.code">{{ status.name }}</option>
+        </select>
+        <small class="field-error" *ngIf="form.get('statusCode')?.touched && form.get('statusCode')?.invalid">Choose an existing status.</small>
+      </label>
+      <label>Start date
+        <input type="date" formControlName="startDate" />
+        <small class="field-error" *ngIf="form.get('startDate')?.touched && form.get('startDate')?.invalid">Choose a start date.</small>
+      </label>
+      <label>End date
+        <input type="date" formControlName="endDate" />
+        <small class="field-error" *ngIf="form.get('endDate')?.touched && form.get('endDate')?.invalid">Choose an end date.</small>
+      </label>
+      <label>Contract value (INR)
+        <input type="number" min="0.01" step="0.01" formControlName="contractValue" />
+        <small class="field-error" *ngIf="form.get('contractValue')?.touched && form.get('contractValue')?.invalid">Enter a positive value with up to two decimal places.</small>
+      </label>
+      <label class="wide-field">Summary
+        <textarea rows="4" maxlength="1000" formControlName="summary"></textarea>
+        <small class="field-error" *ngIf="form.get('summary')?.touched && form.get('summary')?.invalid">Enter a summary (1000 characters or fewer).</small>
+      </label>
+    </div>
+    <p class="field-error" role="alert" *ngIf="form.touched && form.errors?.['dateRange']">End date must be on or after the start date.</p>
+    <p class="error-message" role="alert" *ngIf="saveError">{{ saveError }}</p>
+    <div class="form-actions">
+      <a class="secondary-link" routerLink="/contracts">Cancel</a>
+      <button class="primary-button" type="submit" [disabled]="saving">{{ saving ? 'Savingâ€¦' : (editing ? 'Save changes' : 'Create contract') }}</button>
+    </div>
+  </form>
+</main>

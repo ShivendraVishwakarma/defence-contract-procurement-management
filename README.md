@@ -39,21 +39,21 @@ DEVELOPMENT_STATUS.md
 
 ## Oracle setup
 
-1. Connect to `XEPDB1` as a dedicated application schema owner. The project does not use `SYS` for application runtime.
+1. `J14_APP` exists in `XEPDB1` and is the application schema owner. Supply its password locally through `ORACLE_DB_PASSWORD`; the project does not use `SYS` for application runtime.
 2. Run `database/schema.sql` once in that schema. It is create-only and does not drop objects.
 3. Run `database/seed_data.sql` after the schema. It inserts fictional reference and transaction records, including five documented boundary cases. Seed account hashes are irrecoverable placeholders and cannot be used to log in; arrange an approved password reset before a live login demonstration.
 4. Supply database access through process environment variables. Do not commit credentials:
 
 ```powershell
-$env:ORACLE_JDBC_URL = 'jdbc:oracle:thin:@//localhost:1521/XEPDB1'
-$env:ORACLE_DB_USERNAME = Read-Host 'Application schema username'
+$env:ORACLE_JDBC_URL = 'jdbc:oracle:thin:@//127.0.0.1:1521/XEPDB1'
+$env:ORACLE_DB_USERNAME = 'J14_APP'
 $securePassword = Read-Host 'Application schema password' -AsSecureString
 $env:ORACLE_DB_PASSWORD = [System.Net.NetworkCredential]::new('', $securePassword).Password
 ```
 
 The application validates the schema at startup (`ddl-auto: validate`) and does not create or alter tables automatically.
 
-With SQL*Plus installed, connect using `sqlplus APP_SCHEMA@//localhost:1521/XEPDB1` (SQL*Plus prompts for the schema password), then run `@database/schema.sql` and `@database/seed_data.sql` once each from the repository root.
+With SQL*Plus installed, connect using `sqlplus J14_APP@//127.0.0.1:1521/XEPDB1` (SQL*Plus prompts for the schema password), then run `@database/schema.sql` and `@database/seed_data.sql` once each from the repository root. SQL*Plus is not required for application JDBC connectivity.
 
 ## Backend setup and run
 
@@ -64,7 +64,7 @@ mvn.cmd -f backend/pom.xml test
 mvn.cmd -f backend/pom.xml spring-boot:run
 ```
 
-The API defaults to port 8080. Set `ORACLE_JDBC_URL`, `ORACLE_DB_USERNAME`, and `ORACLE_DB_PASSWORD` in the same shell before starting it. Optional settings are `SERVER_PORT` and `APP_CORS_ALLOWED_ORIGIN`.
+The API defaults to port 8080 and the JDBC URL and username default to `jdbc:oracle:thin:@//127.0.0.1:1521/XEPDB1` and `J14_APP`. Set `ORACLE_DB_PASSWORD` in the same shell before starting it; the password is never stored in project files. Optional settings are `SERVER_PORT` and `APP_CORS_ALLOWED_ORIGIN`.
 
 ## Frontend setup and run
 
