@@ -16,18 +16,43 @@
     </aside>
 
     <main class="content">
-      <div class="welcome-row"><div><p class="eyebrow">PROJECT J14 · OVERVIEW</p><h1>Good day, {{ firstName }}.</h1><p class="lede">Your procurement workspace is ready.</p></div><span class="date-chip">ABES · MCA</span></div>
-      <div class="role-list" *ngIf="profile?.roles?.length"><span class="role-badge" *ngFor="let role of profile?.roles">{{ roleLabel(role) }}</span></div>
-
-      <section class="summary-grid" aria-label="Module overview">
-        <a class="summary-card" routerLink="/contracts"><span class="card-icon">▤</span><span class="card-title">Contracts</span><strong>Repository</strong><small>Lifecycle workspace</small><span class="card-arrow">↗</span></a>
-        <a class="summary-card" routerLink="/procurement"><span class="card-icon">⌑</span><span class="card-title">Procurement</span><strong>Requests</strong><small>Planning workspace</small><span class="card-arrow">↗</span></a>
-        <a class="summary-card" routerLink="/vendors"><span class="card-icon">◇</span><span class="card-title">Vendors</span><strong>Evaluations</strong><small>Selection workspace</small><span class="card-arrow">↗</span></a>
-        <a class="summary-card" routerLink="/invoices"><span class="card-icon">▧</span><span class="card-title">Invoices</span><strong>Payments</strong><small>Processing workspace</small><span class="card-arrow">↗</span></a>
+      <section class="hero">
+        <div class="welcome-row">
+          <div>
+            <p class="eyebrow">J14 / PROCUREMENT DESK <span></span> CONTROL CENTRE</p>
+            <h1>Good day, {{ firstName }}.</h1>
+            <p class="lede">One clear view of contracts, procurement and supplier activity.</p>
+            <div class="role-list" *ngIf="profile?.roles?.length">
+              <span class="role-badge" *ngFor="let role of profile?.roles">{{ roleLabel(role) }}</span>
+            </div>
+          </div>
+          <div class="hero-badge"><span class="pulse"></span><strong>Workspace online</strong><small>Secure project session</small></div>
+        </div>
+        <div class="hero-actions">
+          <a routerLink="/procurement/new" class="primary-action"><span class="action-plus">+</span> New requisition</a>
+          <a routerLink="/contracts" class="secondary-action">Browse contracts <span>↗</span></a>
+        </div>
       </section>
 
-      <section class="activity-panel"><div><p class="eyebrow">GETTING STARTED</p><h2>Workspace foundations are in place</h2><p>Sign-in is connected to the project API. Module records and dashboard totals will appear as each approved module is built.</p></div><div class="activity-mark">J14</div></section>
-      <p class="disclaimer">Training records shown in this application are fictional. No classified or operational defence information is used.</p>
+      <section class="metric-grid" aria-label="Workspace status">
+        <div class="metric-card"><span class="metric-icon teal">◫</span><div><strong>04</strong><span>active workspaces</span></div><small>Ready to use</small></div>
+        <div class="metric-card"><span class="metric-icon blue">◉</span><div><strong>100%</strong><span>session protected</span></div><small>CSRF enabled</small></div>
+        <div class="metric-card"><span class="metric-icon gold">◆</span><div><strong>J14</strong><span>training environment</span></div><small>Fictional records</small></div>
+      </section>
+
+      <div class="section-heading"><div><p class="eyebrow">WORKSPACE MODULES</p><h2>Move work forward</h2></div><span class="section-note">Four connected workstreams</span></div>
+      <section class="summary-grid" aria-label="Module overview">
+        <a class="summary-card contracts-card" routerLink="/contracts"><div class="card-top"><span class="module-number">01</span><span class="card-icon">▤</span><span class="card-arrow">↗</span></div><span class="card-title">Contracts</span><strong>Repository &amp; lifecycle</strong><small>Manage agreements, values and status.</small><span class="open-link">Open workspace <b>→</b></span></a>
+        <a class="summary-card procurement-card" routerLink="/procurement"><div class="card-top"><span class="module-number">02</span><span class="card-icon">⌑</span><span class="card-arrow">↗</span></div><span class="card-title">Procurement</span><strong>Requests &amp; planning</strong><small>Coordinate requirements and line items.</small><span class="open-link">Open workspace <b>→</b></span></a>
+        <a class="summary-card vendors-card" routerLink="/vendors"><div class="card-top"><span class="module-number">03</span><span class="card-icon">◇</span><span class="card-arrow">↗</span></div><span class="card-title">Vendors</span><strong>Evaluation &amp; selection</strong><small>Record supplier scores and recommendations.</small><span class="open-link">Open workspace <b>→</b></span></a>
+        <a class="summary-card invoices-card" routerLink="/invoices"><div class="card-top"><span class="module-number">04</span><span class="card-icon">▧</span><span class="card-arrow">↗</span></div><span class="card-title">Invoices</span><strong>Payments &amp; tracking</strong><small>Track billing, due dates and payments.</small><span class="open-link">Open workspace <b>→</b></span></a>
+      </section>
+
+      <section class="bottom-grid">
+        <div class="activity-panel"><div class="panel-mark">J14</div><div><p class="eyebrow">PROJECT NOTE</p><h2>Built for confident decisions.</h2><p>Keep procurement records organised from the first request through supplier review, contract delivery and payment.</p></div></div>
+        <div class="trust-panel"><div class="trust-icon">✓</div><div><strong>Fictional training data</strong><p>No classified or operational defence information is used.</p></div></div>
+      </section>
+      <p class="disclaimer">ABES Engineering College · MCA · Defence Contract and Procurement Management</p>
     </main>
   </div>
 </div>
