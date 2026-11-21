@@ -1,0 +1,33 @@
+<main class="login-page">
+  <section class="intro-panel" aria-label="Project introduction">
+    <div class="brand"><span class="brand-mark">J14</span><span>PROCUREMENT SYSTEM</span></div>
+    <div class="intro-copy">
+      <p class="eyebrow">ABES ENGINEERING COLLEGE · MCA</p>
+      <h1>Clarity across every contract.</h1>
+      <p>A secure workspace for fictional defence procurement records, supplier reviews and payment tracking.</p>
+    </div>
+    <div class="intro-footer"><span class="status-dot"></span> Fictional training environment</div>
+  </section>
+  <section class="form-panel" aria-labelledby="login-title">
+    <div class="form-wrap">
+      <div class="mobile-brand"><span class="brand-mark">J14</span><span>PROCUREMENT SYSTEM</span></div>
+      <p class="eyebrow">WELCOME BACK</p>
+      <h2 id="login-title">Sign in to your workspace</h2>
+      <p class="subheading">Use your assigned project account to continue.</p>
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <label for="username">Username</label>
+        <input id="username" type="text" formControlName="username" autocomplete="username" maxlength="50"
+          [attr.aria-invalid]="form.controls.username.invalid && form.controls.username.touched" />
+        <small class="field-error" *ngIf="form.controls.username.touched && form.controls.username.hasError('required')">Enter your username.</small>
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" autocomplete="current-password" maxlength="72"
+          [attr.aria-invalid]="form.controls.password.invalid && form.controls.password.touched" />
+        <small class="field-error" *ngIf="form.controls.password.touched && form.controls.password.hasError('required')">Enter your password.</small>
+        <div class="alert" role="alert" *ngIf="errorMessage">{{ errorMessage }}</div>
+        <button type="submit" [disabled]="busy"><span>{{ busy ? 'Signing in…' : 'Sign in' }}</span><span aria-hidden="true">→</span></button>
+      </form>
+      <p class="security-note"><span aria-hidden="true">◆</span> Session protected · Passwords are never displayed</p>
+    </div>
+    <footer>J14 · Defence Contract and Procurement Management <span>© ABES MCA Project</span></footer>
+  </section>
+</main>

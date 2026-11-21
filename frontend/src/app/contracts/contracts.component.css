@@ -1,0 +1,25 @@
+.contracts-page { width: min(1120px, 100%); margin: 0 auto; padding: 40px clamp(20px, 5vw, 64px); }
+.back-link { display: inline-block; margin-bottom: 30px; color: #39776c; font-size: 12px; font-weight: 700; }
+.page-heading { margin-bottom: 28px; }
+.eyebrow { margin: 0 0 10px; color: #56887e; font-size: 9px; font-weight: 700; letter-spacing: .17em; }
+h1 { margin: 0; color: #17353b; font: 700 clamp(27px, 3vw, 38px)/1.2 'Manrope', sans-serif; letter-spacing: -.05em; }
+.intro { margin: 10px 0 0; color: #728385; font-size: 13px; }
+.records-card { overflow: hidden; border: 1px solid #e2e9e6; border-radius: 10px; background: #fff; }
+.records-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; border-bottom: 1px solid #e8eeeb; }
+.records-heading h2 { margin: 0; color: #24443f; font: 700 16px 'Manrope', sans-serif; }
+.records-heading p { margin: 5px 0 0; color: #82918e; font-size: 11px; }
+.header-actions { display: flex; align-items: center; gap: 9px; }
+.refresh-button, .retry-button, .create-button { padding: 8px 12px; border: 1px solid #d3e2dc; border-radius: 6px; color: #276159; background: #f8fbf9; cursor: pointer; font: 700 11px 'Manrope', sans-serif; }
+.create-button { border-color: #276159; color: white; background: #276159; }
+.refresh-button:disabled { opacity: .55; cursor: wait; }
+.state-message, .error-state { margin: 0; padding: 28px 22px; color: #718481; font-size: 12px; }
+.error-state p { margin: 0 0 13px; color: #8b433a; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; text-align: left; white-space: nowrap; }
+th { padding: 12px 15px; color: #82918e; background: #f8faf9; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+td { padding: 14px 15px; border-top: 1px solid #edf1ef; color: #4f6665; font-size: 11px; }
+.contract-number { color: #244c48; font-weight: 700; }
+.contract-number a { color: inherit; }
+.status { display: inline-block; padding: 5px 8px; border-radius: 5px; color: #28655b; background: #eaf4f0; font-size: 10px; font-weight: 700; }
+.amount { text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 650px) { .contracts-page { padding-top: 28px; } .records-heading { padding: 16px; } }

@@ -1,0 +1,21 @@
+.form-page { width: min(900px, 100%); margin: 0 auto; padding: 40px clamp(20px, 5vw, 64px); }
+.back-link { display: inline-block; margin-bottom: 28px; color: #39776c; font-size: 12px; font-weight: 700; }
+.eyebrow { margin: 0 0 10px; color: #56887e; font-size: 9px; font-weight: 700; letter-spacing: .17em; }
+h1 { margin: 0 0 24px; color: #17353b; font: 700 clamp(27px, 3vw, 36px)/1.2 'Manrope', sans-serif; }
+.contract-form, .success-state { padding: 24px; border: 1px solid #e2e9e6; border-radius: 10px; background: white; }
+.field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; }
+label { display: flex; flex-direction: column; gap: 7px; color: #59716c; font-size: 11px; font-weight: 700; }
+input, select, textarea { width: 100%; min-height: 39px; padding: 9px 10px; border: 1px solid #d5e1dc; border-radius: 6px; color: #263f3e; background: white; font: 12px inherit; }
+textarea { resize: vertical; }
+input:focus, select:focus, textarea:focus { border-color: #4b8b7f; outline: 2px solid #dcefe8; }
+.wide-field { grid-column: 1 / -1; }
+.field-error, .error-message { color: #9a4539; font-size: 10px; font-weight: 500; }
+.form-actions { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-top: 22px; }
+.primary-button, .primary-link, .secondary-button, .secondary-link { display: inline-block; padding: 9px 13px; border: 1px solid #276159; border-radius: 6px; color: white; background: #276159; cursor: pointer; font: 700 11px 'Manrope', sans-serif; text-decoration: none; }
+.primary-button:disabled { opacity: .55; cursor: wait; }
+.secondary-button, .secondary-link { border-color: #d3e2dc; color: #276159; background: #f8fbf9; }
+.state-message, .error-state { padding: 22px; color: #718481; font-size: 12px; }
+.error-state p, .error-message { color: #8b433a; }
+.success-state p { margin: 0 0 14px; color: #28655b; font-size: 13px; }
+.success-state a + a { margin-left: 9px; }
+@media (max-width: 650px) { .field-grid { grid-template-columns: 1fr; } .wide-field { grid-column: auto; } .contract-form { padding: 18px; } }
